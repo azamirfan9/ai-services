@@ -2,7 +2,7 @@ import mysql.connector
 from sentence_transformers import SentenceTransformer
 import json
 
-# 1. Load the free AI model globally (so it only downloads/loads once)
+# 1. Load the free AI model globally (so it only downloads/loads once)  
 print("Loading AI Model...")
 model = SentenceTransformer('all-MiniLM-L6-v2')
 
