@@ -91,46 +91,9 @@ def search_ai_index_fast(search_query, entity_type_filter=None, limit=5, min_thr
 # save_to_ai_index("user", 405, "Alex Chen. Senior Software Engineer in London. Expert in Python.")
 
 # 2. Perform Fast Search
-# results = search_ai_index_fast("Is there the details of HP Pavilion and Apple MacBook?", limit=3)
-
-# print("\n--- Top Results ---")
-# for res in results:
-#     score = round(res['similarity_score'] * 100, 2)
-#     print(f"[{score}% Match] {res['text_content'][:70]}...")
-
-
-def generate_human_response(query, search_results):
-    if not search_results:
-        return f"I'm sorry, I couldn't find any information regarding '{query}' in our records."
-
-    # Start the response
-    response = f"Based on your search for '{query}', here is what I found:\n\n"
-    
-    # Iterate through results to build a natural sentence
-    for i, match in enumerate(search_results):
-        text = match['text_content']
-        score = round(match['similarity_score'] * 100, 1)
-        
-        # Add a natural connector
-        if i == 0:
-            response += f"The best match is for a {text}. "
-        elif i == 1:
-            response += f"I also found details on a {text}. "
-        else:
-            response += f"Additionally, there's a record for a {text}. "
-            
-        response += f"(Confidence: {score}%)\n"
-
-    response += "\nIs there anything specific about these items you'd like to know more about?"
-    return response
-
-# --- HOW TO USE IT ---
-
-# 1. Get the raw data
 results = search_ai_index_fast("Is there the details of HP Pavilion and Apple MacBook?", limit=3)
 
-# 2. Turn it into a human sentence
-human_answer = generate_human_response("HP and MacBook details", results)
-
-print("\n--- AI VOICE ---")
-print(human_answer)
+print("\n--- Top Results ---")
+for res in results:
+    score = round(res['similarity_score'] * 100, 2)
+    print(f"[{score}% Match] {res['text_content'][:70]}...")
